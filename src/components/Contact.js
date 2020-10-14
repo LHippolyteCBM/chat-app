@@ -1,22 +1,21 @@
 import React from 'react'
 import './Contact.css'
+import ContactList from './ContactList'
 
 
-function Contact() {
-    const contact = (
-        <div className="Contact">
-            <img className="avatar" src="https://randomuser.me/api/portraits/men/37.jpg" alt="Profile picture"></img>
-            <div className="name">
-                Juan Dos Tres
-            <div className="status">                    
-                <div className="status-online"></div>
-                    online
-                </div>
-            </div>
+function Contact({ name, avatar, online }) {
+    return (
+      <div className="Contact">
+        <img className="avatar" src={avatar} alt={name} />
+        <div>
+          <p className="name">{name}</p>
+          <div className="status">
+            <div className={online ? "status-online" : "status-offline"} />
+            <p className="status-text">{online ? "Online" : "Offline"}</p>
+          </div>
         </div>
-    )
-
-    return contact
-}
+      </div>
+    );
+  }
 
 export { Contact }
