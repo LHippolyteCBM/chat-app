@@ -1,21 +1,49 @@
 import React from 'react'
 import './Contact.css'
-import ContactList from './ContactList'
+import PropTypes from 'prop-types'
+
+class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            online: props.online,
+        }
+    }
+
+    onlineSwitch() {
+        let result = !this.state.online;
+        this.setState({ online: result })
+    }
 
 
-function Contact({ name, avatar, online }) {
-    return (
-      <div className="Contact">
-        <img className="avatar" src={avatar} alt={name} />
-        <div>
-          <p className="name">{name}</p>
-          <div className="status">
-            <div className={online ? "status-online" : "status-offline"} />
-            <p className="status-text">{online ? "Online" : "Offline"}</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
+    render() {
+        const contact = (
+            <div className="Contact">
+                <div className="avatar">
+                    <img
+                        src={this.props.avatar}
+                        alt=""
+                    ></img>
+                </div>
+                <div className="info">
+                    <div className="name">
+                        {this.props.name}
+                    </div>
+                    <div className="status" onClick={this.onlineSwitch.bind(this)}>
+                        <div className={this.state.online ? "status-online" : "status-offline"}></div>
+                        {this.state.online ? "Online" : "Offline"}
+                    </div>
+                </div>
+            </div>
+        )
 
+        return contact
+    }
+}
 export { Contact }
+
+Contact.propTypes = {
+    avatar: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    online: PropTypes.bool.isRequired,
+};

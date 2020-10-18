@@ -4,7 +4,7 @@ import './Contact.css';
 
 const users = [
     {
-      name: 'Robert Reyes',
+      name: 'Juan Dos Tres',
       avatar: 'https://randomuser.me/api/portraits/men/28.jpg',
       online: false
     },
